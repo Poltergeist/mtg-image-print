@@ -3,13 +3,28 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+}
+.card {
+  height: 88mm;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 63mm);
+  grid-template-rows: repeat(3, 88mm);
+  margin: auto;
+  width: calc(63mm * 3);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media print {
+  .card {
+    height: 88mm;
+    width: 63mm;
+    box-sizing: border-box;
+    border: dashed black;
+    border-width: 1pt 1pt;
+  }
+  .dropzone {
+    display: none;
   }
 }
 
@@ -26,13 +41,4 @@
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
