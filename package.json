@@ -2,6 +2,7 @@
   "name": "mtg-image-print",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://poltergeist.github.io/mtg-image-print/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
