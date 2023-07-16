@@ -1,3 +1,7 @@
+:root {
+  --card-width: 63mm;
+  --card-height: 88mm;
+}
 .App {
   text-align: center;
 }
@@ -5,26 +9,36 @@
 .App-logo {
 }
 .card {
-  height: 88mm;
+  height: var(--card-height);
 }
 .container {
   display: grid;
-  grid-template-columns: repeat(3, 63mm);
-  grid-template-rows: repeat(3, 88mm);
+  grid-template-columns: repeat(3, var(--card-width));
+  grid-template-rows: repeat(3, var(--card-height));
   margin: auto;
-  width: calc(63mm * 3);
+  width: calc(var(--card-width) * 3);
+}
+
+@media screen {
+  .container {
+    padding-top: 25vh;
+  }
+}
+
+@page {
+  size: calc(var(--card-width) * 3) (var(--card-height) * 3);
 }
 
 @media print {
   .card {
-    height: 88mm;
-    width: 63mm;
+    height: var(--card-height);
+    width: var(--card-width);
     box-sizing: border-box;
-    border: dashed black;
-    border-width: 1pt 1pt;
+    border: dashed rgba(0, 0, 0, 0.3);
+    border-width: 0.5pt 0.5pt;
   }
   .dropzone {
-    display: none;
+    display: none !important;
   }
 }
 
