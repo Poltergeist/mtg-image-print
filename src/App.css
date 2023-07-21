@@ -1,6 +1,7 @@
 :root {
   --card-width: 63mm;
   --card-height: 88mm;
+  --card-bleed: 2mm;
 }
 .App {
   text-align: center;
@@ -8,15 +9,31 @@
 
 .App-logo {
 }
+
+.cardImage {
+  height: calc(var(--card-height));
+}
+.cardImage.bleed {
+  height: calc(var(--card-height) + 2 * var(--card-bleed));
+  transform: translate(
+    calc(-1 * var(--card-bleed)),
+    calc(-1 * var(--card-bleed))
+  );
+}
 .card {
-  height: var(--card-height);
+  overflow: hidden;
+  height: calc(var(--card-height));
 }
 .container {
   display: grid;
   grid-template-columns: repeat(3, var(--card-width));
-  grid-template-rows: repeat(3, var(--card-height));
+  /* grid-template-rows: repeat(3, var(--card-height)); */
   margin: auto;
   width: calc(var(--card-width) * 3);
+}
+.form {
+  grid-column: span 3;
+  height: auto;
 }
 
 @media screen {
@@ -37,7 +54,8 @@
     border: dashed rgba(0, 0, 0, 0.3);
     border-width: 0.5pt 0.5pt;
   }
-  .dropzone {
+  .dropzone,
+  .form {
     display: none !important;
   }
 }

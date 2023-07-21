@@ -42,6 +42,7 @@ const rejectStyle = {
 
 function App() {
   const [files, setFiles] = React.useState<FilePreview[]>([]);
+  const [bleed, setBleed] = React.useState<boolean>(false);
   const onDrop = React.useCallback((acceptedFiles: File[]) => {
     setFiles((old) => [
       ...old,
@@ -75,15 +76,19 @@ function App() {
   );
 
   const fileList = files.map((file) => (
-    <img
-      src={file.preview}
-      className="card"
-      alt={file.name}
-      data-uuid={file.uuid}
-      key={file.uuid}
-      onClick={onRemove}
-    />
+    <div className="card">
+      <img
+        src={file.preview}
+        className={bleed ? "cardImage bleed" : "cardImage"}
+        alt={file.name}
+        data-uuid={file.uuid}
+        key={file.uuid}
+        onClick={onRemove}
+      />
+    </div>
   ));
+
+  const onClick = () => setBleed(!bleed);
 
   return (
     <div className="App">
@@ -91,7 +96,18 @@ function App() {
         <input {...getInputProps()} />
         <p>Drag and drop your files here, or click to select files</p>
       </div>
-      <div className="container">{fileList}</div>
+      <div className="container">
+        <div className="form">
+          <input
+            type="checkbox"
+            value={bleed + ""}
+            onChange={onClick}
+            id="bleed"
+          />
+          <label htmlFor="bleed">Remove Bleed</label>
+        </div>
+        {fileList}
+      </div>
     </div>
   );
 }
